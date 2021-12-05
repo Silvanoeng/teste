@@ -10,12 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
 
     @Autowired
     private ProdutoServiceImpl produtoService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping
     public ResponseEntity salvar(@RequestBody ProductDTO product){
         ProductDTO productDTO = produtoService.salvar(product);
@@ -25,14 +26,14 @@ public class ProductController {
         return ResponseEntity.badRequest().body("Produto nao cadatradado");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/buscartodos")
     public ResponseEntity<List<ProductDTO>>findAll(){
 
         return ResponseEntity.ok(produtoService.buscarTodos());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/buscar/{id}")
     public ResponseEntity<ProductDTO> buscarPorId(@PathVariable Long id) {
 
@@ -40,7 +41,7 @@ public class ProductController {
         return ResponseEntity.ok(productDTO);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/category/{category}")
     public ResponseEntity<List<ProductDTO>> findbycategory(@PathVariable String category){
         List<ProductDTO> productDTO =produtoService.buscarPorCategoria(category);

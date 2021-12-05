@@ -22,9 +22,6 @@ public class CategoryEntity {
     @Column(name="name")
     private String name;
 
-    /*@OneToMany(fetch = FetchType.EAGER)
-    private Set<ProductEntity> product=new HashSet<>();
-*/
     public CategoryEntity() {
     }
 
